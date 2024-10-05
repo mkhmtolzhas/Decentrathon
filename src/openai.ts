@@ -5,5 +5,10 @@ const client = new OpenAI({
     dangerouslyAllowBrowser: true
 });
 
+const socketClient = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+    dangerouslyAllowBrowser: true
+});
 
-export default client;
+
+export { client, socketClient };

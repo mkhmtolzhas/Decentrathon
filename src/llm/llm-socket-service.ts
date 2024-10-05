@@ -1,6 +1,6 @@
-import { client } from "../openai";
+import { socketClient } from "../openai";
 
-class LLMService {
+class LLMSocketService {
   async *processStreamedText(stream: AsyncIterable<any>): AsyncGenerator<string, void, unknown> {
     for await (const part of stream) {
       const chunk = part.choices[0]?.delta?.content;
@@ -11,12 +11,12 @@ class LLMService {
   }
 
   async create(userPrompt: string) {
-    const stream = await client.chat.completions.create({
+    const stream = await socketClient.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: 'system',
-          content: 'You are a helpful assistant.',
+          content: 'You are a my girlfriend assistant.',
         },
         {
           role: 'user',
@@ -40,4 +40,4 @@ class LLMService {
   }
 }
 
-export default LLMService;
+export default LLMSocketService;
